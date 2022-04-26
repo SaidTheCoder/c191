@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shooting Game in Virtual Reality</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>   
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="shooting.js"></script>
+    <script src="alarm.js"></script>
+    
+  </head>
+  <body>
+    <a-scene id="scene" inspector-plugin-recast>
+
+      <!--Assets-->
+      <a-assets>
+        <!-- <a-asset-item id="collider" src="models/navmesh.gltf"></a-asset-item> -->
+        <a-asset-item id="shooter" src="./assets/tazer/scene.gltf"></a-asset-item>
+        <a-asset-item id="robber" src="./assets/robber/robber/scene.gltf"></a-asset-item>
+        <a-asset-item id="bank" src="./assets/bank/scene.gltf" animation-mixer></a-asset-item>
+        <a-asset-item id="robot" src="./assets/t800/scene.gltf" animation-mixer></a-asset-item>
+        <a-asset-item id="benson" src="./benson_-_regular_show/scene.gltf" animation-mixer></a-asset-item>
+      </a-assets>
+      
+      <!--Light-->
+      <!-- <a-entity light="type: ambient; color: red; intensity:1;distance:50" position="0 6.44 -4"></a-entity> -->
+      <a-sky src="https://cdn.eso.org/images/publicationjpg/vlt-mw-potw.jpg"></a-sky>
+      <!--Camera and Cursor-->
+     
+        <!-- <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls="pointerLockEnabled:false"></a-entity> -->
+
+      <a-entity id="weapon" gltf-model="#shooter" position="-0.07 1.54 -2 " rotation="0 90 0" scale="1 1 1"></a-entity>
+      
+
+        <!-- <a-cursor></a-cursor-->
+      </a-entity>
+
+      <a-entity enemy-bullets></a-entity>
+
+      <a-entity bullets></a-entity>
+
+      <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="green" visible="true" static-body></a-plane>
+
+      <a-entity class="enemy" id="robber_duck" gltf-model="#robber" position="0 1.44 -4 " rotation="0 0 0" scale="0.13 0.13 0.13"></a-entity>
+
+      <a-entity  id="bank_room" gltf-model="#bank" position="0 1 -4 " rotation="0 0 0" scale="0.4 0.4 0.4" animation-mixersdw></a-entity>
+
+      <a-entity class="enemy" id="robber2" gltf-model="#benson" position="2 1.7 -4 " rotation="0 0 0" scale="0.19 0.19 0.19" animation-mixersdw></a-entity>
+
+      <a-entity class="enemy" id="robber3" gltf-model="#robot" position="-2 1.7 -4 " rotation="0 0 0" scale="0.0005 0.0005 0.0005" animation-mixersdw></a-entity>
+
+      <audio id="alarm" src="./assets/alarm.mp3"></audio>
+
+      <a-entity id="alarm_sound" sound="src:#alarm;poolSize:2;autoplay:false;volume:1;loop:true" player-movement></a-entity>
+
+      <a-entity id="tanktargets" position="7 5 -7.1" text="font: mozillavr;width:10; height: 5; value: robbers:">
+        <a-entity id="countTank" position="3 0 0" text="font: mozillavr; width:10; height: 5; value: 3"></a-entity>
+      </a-entity>
+
+      <a-entity id="playerLife" position="-2 5 -7.16344"
+        text="font: mozillavr; width:10; height: 5;value: Player Life:">
+        <a-entity id="countLife" position="3 0 0" text="font: mozillavr; width:10; height: 5; value: 5"></a-entity>
+      </a-entity>
+
+      <!-- <a-entity id="navigation-mesh" gltf-model="#collider" visible="false" nav-mesh></a-entity>  -->
+    </a-scene>
+  </body>
+</html>
